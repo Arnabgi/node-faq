@@ -1,0 +1,10 @@
+<h1>Add Question:</h1>
+<form [formGroup]="questionForm">
+    <div>
+        <label for="">Question</label>
+        <input type="text" formControlName="question">
+    </div>
+    <div>
+        <button (click)="addQuestion()">Submit</button>
+    </div>
+</form>
