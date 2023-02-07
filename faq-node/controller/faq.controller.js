@@ -38,6 +38,7 @@ module.exports ={
             res.json({
                 status: 200,
                 message: faq.msg, 
+                data: faq.questionDetails
             });   
         } catch (error) {
             res.send(error);
@@ -52,11 +53,36 @@ module.exports ={
             let faq = await faqService.addFaqAnswer(question_id,faqAnswers);
             res.json({
                 status: 200,
-                message: faq.msg
+                message: faq.msg,
             })
         } catch (error) {
             console.log("error...",error);
             res.send(error);
         }
-    } 
+    },
+    
+    getFaqQuestion: async(req,res) => {
+        try {
+            const getQuestion = await faqService.getFaqQuestion();
+            res.json({
+                status: 200,
+                data: getQuestion
+            })
+        } catch (error) {
+            res.send(error)
+        }
+    },
+
+    getData: async(req,res) => {
+        try {
+            const faqData = await faqService.getData();
+            res.json({
+                status: 200,
+                data: faqData
+            })
+        } catch (error) {
+            console.log(error);
+            res.send(error);
+        }
+    }
 }

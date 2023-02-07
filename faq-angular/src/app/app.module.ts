@@ -9,12 +9,14 @@ import { FaqComponent } from './components/faq/faq.component';
 import { LoginComponent } from './components/login/login.component';
 import { FaqAddQuestionComponent } from './components/faq-add-question/faq-add-question.component';
 import { InterceptorService } from './services/interceptor.service';
+import { FaqAddAnswerComponent } from './components/faq-add-answer/faq-add-answer.component';
 @NgModule({
   declarations: [
     AppComponent,
     FaqComponent,
     LoginComponent,
-    FaqAddQuestionComponent
+    FaqAddQuestionComponent,
+    FaqAddAnswerComponent
   ],
   imports: [
     BrowserModule,

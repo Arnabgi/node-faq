@@ -28,6 +28,7 @@ module.exports = {
         try {
             const fqData = await faq.create(faqData);
             return {
+                questionDetails: fqData,
                 msg: "Success!"
             }
         } catch (error) {
@@ -50,5 +51,39 @@ module.exports = {
         } catch (error) {
             throw error;
         }
+    },
+
+    getFaqQuestion: async() => {
+        try {
+            const getFaqQuestion = await faq.findAll();
+            return getFaqQuestion;
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    getData: async() => {
+        try {
+            // const qid = await faqAns.findAll({
+            //     attributes: ['question_id']
+            // });
+    
+            const faqData = await faqAns.findAll({
+                include:[{
+                    model: faq,
+                    // required: true
+                    // where:{
+                    //     id: qid
+                    // }
+                }],
+                raw: true
+                // logging: console.log
+            });
+            return faqData;
+        } catch (error) {
+            console.log(error);
+            throw error;
+        }
+        
     }
 }

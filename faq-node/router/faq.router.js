@@ -8,5 +8,6 @@ route.get('/test',faqController.getData);
 route.post('/signIn',faqController.logIn);
 route.post('/createFaq',authMiddleware.authVerify,faqController.sendFaq);
 route.post('/createFaqAnswer',authMiddleware.authVerify,faqController.sendAnswer);
-
+route.get('/getQuestion',authMiddleware.authVerify,faqController.getFaqQuestion);
+route.get('/faq',authMiddleware.authVerify,faqController.getData);
 module.exports = route;

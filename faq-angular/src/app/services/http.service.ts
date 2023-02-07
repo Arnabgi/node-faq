@@ -15,4 +15,7 @@ export class HttpService {
   sendQuestionData(questionData:any) : Observable<any> {
     return this.http.post('http://localhost:5001/faq-route/createFaq',questionData);
   }
+  sendAnswerData(answerData:any) : Observable<any> {
+    return this.http.post('http://localhost:5001/faq-route/createFaqAnswer',answerData);
+  }
 }

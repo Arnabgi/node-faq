@@ -10,6 +10,9 @@ export class FaqComponent {
     private route: Router
   ){}
   addQuestion(){
-    this.route.navigateByUrl('/faq-add-question')
+    this.route.navigateByUrl('/faq-add-question');
+  }
+  addAnswer(){
+    this.route.navigateByUrl('/faq-add-answer');
   }
 }

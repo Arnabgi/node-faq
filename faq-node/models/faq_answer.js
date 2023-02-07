@@ -11,9 +11,11 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      faq_answer.belongsTo(models.faq,{});
     }
   }
   faq_answer.init({
+    question_id: DataTypes.INTEGER,
     answers: DataTypes.STRING
   }, {
     sequelize,
