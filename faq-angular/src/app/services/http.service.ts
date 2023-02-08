@@ -18,4 +18,12 @@ export class HttpService {
   sendAnswerData(answerData:any) : Observable<any> {
     return this.http.post('http://localhost:5001/faq-route/createFaqAnswer',answerData);
   }
+  list() : Observable<any> {
+    return this.http.get('http://localhost:5001/faq-route/faq');
+  }
+  delete(data:any): Observable<any> {
+    return this.http.delete('http://localhost:5001/faq-route/faq',{
+      body: data
+    });
+  }
 }

@@ -68,9 +68,9 @@ module.exports = {
             //     attributes: ['question_id']
             // });
     
-            const faqData = await faqAns.findAll({
+            const faqData = await faq.findAll({
                 include:[{
-                    model: faq,
+                    model: faqAns,
                     // required: true
                     // where:{
                     //     id: qid
@@ -83,7 +83,46 @@ module.exports = {
         } catch (error) {
             console.log(error);
             throw error;
+        }    
+    },
+
+    deleteData: async(faqId) => {
+        try {
+            console.log("faqId..........",faqId);
+            const countData = await faqAns.findAndCountAll({
+                where:{
+                    'question_id': faqId.id
+                }
+            });
+            
+            //console.log("countData...........",countData);return;
+            if(countData.count == 1){
+                const dataDelete = await faq.destroy({
+                    where:{
+                        id: faqId.id
+                    }
+                });
+                if(dataDelete){
+                    await faqAns.destroy({
+                        where:{
+                            id: faqId.questionId
+                        }
+                    });
+                }
+            }
+            else{
+                await faqAns.destroy({         
+                    where:{
+                        id: faqId.questionId
+                    }
+                });
+            }
+            return {
+                msg: "Deleted Successfully!"
+            }
+        } catch (error) {
+            console.log(error);
+            throw error;
         }
-        
     }
 }

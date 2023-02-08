@@ -10,13 +10,15 @@ import { LoginComponent } from './components/login/login.component';
 import { FaqAddQuestionComponent } from './components/faq-add-question/faq-add-question.component';
 import { InterceptorService } from './services/interceptor.service';
 import { FaqAddAnswerComponent } from './components/faq-add-answer/faq-add-answer.component';
+import { FaqListComponent } from './components/faq-list/faq-list.component';
 @NgModule({
   declarations: [
     AppComponent,
     FaqComponent,
     LoginComponent,
     FaqAddQuestionComponent,
-    FaqAddAnswerComponent
+    FaqAddAnswerComponent,
+    FaqListComponent
   ],
   imports: [
     BrowserModule,

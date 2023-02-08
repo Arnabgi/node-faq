@@ -84,5 +84,23 @@ module.exports ={
             console.log(error);
             res.send(error);
         }
+    },
+
+    deleteData: async(req,res) => {
+        try {
+            const faqId = {
+                id : req.body.id,
+                questionId: req.body.questionId
+            };
+            const deleteFaq = await faqService.deleteData(faqId);
+            res.json({
+                status: 200,
+                msg: "success"
+                //msg: deleteFaq.msg
+            })
+        } catch (error) {
+            console.log(error);
+            res.send(error);
+        }
     }
 }

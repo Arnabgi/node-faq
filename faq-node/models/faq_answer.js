@@ -11,7 +11,6 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      faq_answer.belongsTo(models.faq,{});
     }
   }
   faq_answer.init({

@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      faq.hasMany(models.answer,{foreignKey:'question_id'});
     }
   }
   faq.init({

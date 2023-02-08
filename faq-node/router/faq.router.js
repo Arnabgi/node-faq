@@ -10,4 +10,6 @@ route.post('/createFaq',authMiddleware.authVerify,faqController.sendFaq);
 route.post('/createFaqAnswer',authMiddleware.authVerify,faqController.sendAnswer);
 route.get('/getQuestion',authMiddleware.authVerify,faqController.getFaqQuestion);
 route.get('/faq',authMiddleware.authVerify,faqController.getData);
+// route.delete('/faq/:id',authMiddleware.authVerify,faqController.deleteData);
+route.delete('/faq',authMiddleware.authVerify,faqController.deleteData)
 module.exports = route;
