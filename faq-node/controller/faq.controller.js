@@ -45,6 +45,23 @@ module.exports ={
         }
     },
 
+    updateFaqQuestion : async(req,res)=>{
+        try {
+            let id = req.params.id;
+            let value = {
+                question: req.body.question,
+            }; 
+            let faq =  await faqService.updateFaqQuestion(id,value);
+            res.json({
+                status: 200,
+                message: faq.msg, 
+                data: faq.questionDetails
+            });  
+        } catch (error) {
+            res.send(error);
+        }
+    },
+
     sendAnswer: async(req,res) => {
         try {
             let faqAnswers = [];
@@ -60,7 +77,55 @@ module.exports ={
             res.send(error);
         }
     },
-    
+
+    updateFaq : async(req,res)=>{
+        try {
+            let qid = req.params.qid;
+            let id = req.params.id;
+            let faqAnswers = req.body.answers;
+            let faq =  await faqService.updateFaqAnswer(qid,id,faqAnswers);
+            res.json({
+                status: 200,
+                message: faq.msg, 
+                data: faq.answersDetails
+            });  
+        } catch (error) {
+            res.send(error);
+        }
+    },
+
+    updateAnswer : async(req,res) => {
+        try {
+            let id = req.params.id;
+            let answer = {
+                answers: req.body.answer
+            };
+            console.log("ans......",answer);
+            let faq =  await faqService.updateAnswer(id,answer);
+            res.json({
+                status: 200,
+                message: faq.msg, 
+                data: faq.answersDetails
+            })
+        } catch (error) {
+            res.send(error);
+        }
+    },
+
+    viewAnswer: async(req,res) => {
+        try {
+            let id = req.params.id;
+            const viewAns = await faqService.viewAnswer(id);
+            res.json({
+                status: 200,
+                data: viewAns
+            })
+        } catch (error) {
+            console.log(error);
+            res.send(error);
+        }
+    },
+
     getFaqQuestion: async(req,res) => {
         try {
             const getQuestion = await faqService.getFaqQuestion();
@@ -102,5 +167,36 @@ module.exports ={
             console.log(error);
             res.send(error);
         }
+    },
+
+    deleteQuestion: async(req,res) => {
+        try {
+            const qId = {
+                id : req.body.id,
+            };
+            const deleteFaq = await faqService.deleteQuestion(qId);
+            res.json({
+                status: 200,
+                msg: deleteFaq.msg
+            })
+        } catch (error) {
+            console.log(error);
+            res.send(error);
+        }
+    },
+
+    viewData: async(req,res) => {
+        try {
+            const faqId = req.params.id;
+            const viewData = await faqService.viewData(faqId);
+            res.json({
+                status: 200,
+                data: viewData
+            })
+        } catch (error) {
+            console.log(error);
+            res.send(error);
+        }
     }
+
 }

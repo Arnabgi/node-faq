@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from 'src/app/services/http.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-faq-list',
   templateUrl: './faq-list.component.html',
@@ -9,6 +10,7 @@ export class FaqListComponent implements OnInit {
   public listValue!: any;
   constructor(
     private http : HttpService,
+    private route: Router
   ){}
 
   ngOnInit(): void {
@@ -25,13 +27,19 @@ export class FaqListComponent implements OnInit {
     })
   }
 
-  deleteFaq(id:any,answerId:any){
-    console.log("id.........",id);
-    console.log("answerId.........",answerId);
-    
+  deleteFaq(id:any,answerId:any){    
     this.http.delete({id:id, questionId:answerId}).subscribe((result) => {
-      console.log("result........",result);
-      console.log("result..........",result.msg);
+      this.list();
     })
+  }
+
+  deleteFaqQuestion(id:any){
+    this.http.deleteQuestion({id:id}).subscribe((result) => {
+      this.list();
+    });
+  }
+
+  editAnswer(id:any){
+    this.route.navigateByUrl('/edit-answer/'+id)
   }
 }

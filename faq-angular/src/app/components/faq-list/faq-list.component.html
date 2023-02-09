@@ -9,7 +9,7 @@
 </head>
 <body>
     <h3><u>Faq List</u></h3>
-    <table>
+    <!-- <table>
         <tr>
             <th>SI No.</th>
             <th>Question</th>
@@ -24,6 +24,15 @@
                 <i class="fa fa-trash" (click)="deleteFaq(val.id,val['answers.id'])"></i> 
             </td>
         </tr>
-    </table>
+    </table> -->
+    <ul *ngFor="let val of listValue; let i = index">
+        {{i+1}}. {{val.question ? val.question :''}}
+        <i class="fa fa-trash" (click)="deleteFaqQuestion(val.id)"></i> 
+        <li *ngFor="let ans of val.answers">
+            {{ans.answers ? ans.answers :'N/A'}}
+            <button (click)="deleteFaq(val.id,ans.id)">Delete Answer</button>
+            <button (click)="editAnswer(ans.id)">Edit Answer</button>
+        </li>
+    </ul>
 </body>
 </html>

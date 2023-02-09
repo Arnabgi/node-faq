@@ -11,6 +11,7 @@ import { FaqAddQuestionComponent } from './components/faq-add-question/faq-add-q
 import { InterceptorService } from './services/interceptor.service';
 import { FaqAddAnswerComponent } from './components/faq-add-answer/faq-add-answer.component';
 import { FaqListComponent } from './components/faq-list/faq-list.component';
+import { EditAnswerComponent } from './components/edit-answer/edit-answer.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +19,8 @@ import { FaqListComponent } from './components/faq-list/faq-list.component';
     LoginComponent,
     FaqAddQuestionComponent,
     FaqAddAnswerComponent,
-    FaqListComponent
+    FaqListComponent,
+    EditAnswerComponent
   ],
   imports: [
     BrowserModule,

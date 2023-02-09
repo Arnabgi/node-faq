@@ -10,6 +10,12 @@ route.post('/createFaq',authMiddleware.authVerify,faqController.sendFaq);
 route.post('/createFaqAnswer',authMiddleware.authVerify,faqController.sendAnswer);
 route.get('/getQuestion',authMiddleware.authVerify,faqController.getFaqQuestion);
 route.get('/faq',authMiddleware.authVerify,faqController.getData);
-// route.delete('/faq/:id',authMiddleware.authVerify,faqController.deleteData);
-route.delete('/faq',authMiddleware.authVerify,faqController.deleteData)
+route.get('/faq/:id',authMiddleware.authVerify,faqController.viewData);
+route.get('/viewAnswer/:id',authMiddleware.authVerify,faqController.viewAnswer);
+route.delete('/faq',authMiddleware.authVerify,faqController.deleteData);
+route.delete('/faq-question',authMiddleware.authVerify,faqController.deleteQuestion);
+route.put('/faq/:id',authMiddleware.authVerify,faqController.updateFaqQuestion);
+route.put('/faq-edit-answer/:id',authMiddleware.authVerify,faqController.updateAnswer);
+route.put('/faqAnswer/:qid/:id',authMiddleware.authVerify,faqController.updateFaq);
+route.put('/edit-answer/:id',authMiddleware.authVerify,faqController.updateAnswer);
 module.exports = route;

@@ -26,4 +26,15 @@ export class HttpService {
       body: data
     });
   }
+  deleteQuestion(id:any): Observable<any> {
+    return this.http.delete('http://localhost:5001/faq-route/faq-question',{
+      body: id
+    });
+  }
+  viewAnswer(id:any): Observable<any> {
+    return this.http.get('http://localhost:5001/faq-route/viewAnswer/'+id);
+  }
+  editAnswer(id:any,data:any) : Observable<any> {
+    return this.http.put('http://localhost:5001/faq-route/edit-answer/'+id,data);
+  }
 }

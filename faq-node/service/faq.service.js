@@ -36,6 +36,22 @@ module.exports = {
         }
     },
 
+    updateFaqQuestion : async(id,value)=>{
+        try {
+            let updateQuestionData = await faq.update(value,{
+                where : {
+                    id : id
+                }
+            });
+            return {
+                questionDetails: updateQuestionData,
+                msg: "Question Updated Successfully!"
+            }
+        } catch (error) {
+            throw error;            
+        }
+    },
+
     addFaqAnswer: async(question_id,faqAnswers) => {
         try {
             faqAnswer = faqAnswers.map((fq) => { 
@@ -50,6 +66,40 @@ module.exports = {
         }
         } catch (error) {
             throw error;
+        }
+    },
+
+    updateFaqAnswer : async(qid,id,faqAnswers)=>{
+        try {
+            let updateAnswerData = await faqAns.update(faqAnswers,{
+                where : {
+                    question_id: qid,
+                    id: id
+                }
+            });
+            return {
+                answerDetails: updateAnswerData,
+                msg: "Faq Updated Successfully!"
+            }
+        } catch (error) {
+            throw error;            
+        }
+    },
+
+    updateAnswer : async(id,answer) => {
+        try {
+            let updateAnswer = await faqAns.update(answer,{
+                where : {
+                    id: id
+                }
+            });
+            console.log("updateAnswer..........",updateAnswer);
+            return {
+                answerDetails: updateAnswer,
+                msg: "Answer Updated Successfully!"
+            }
+        } catch (error) {
+            throw error;  
         }
     },
 
@@ -76,7 +126,6 @@ module.exports = {
                     //     id: qid
                     // }
                 }],
-                raw: true
                 // logging: console.log
             });
             return faqData;
@@ -122,6 +171,58 @@ module.exports = {
             }
         } catch (error) {
             console.log(error);
+            throw error;
+        }
+    },
+
+    deleteQuestion: async(qId) =>{
+        try {
+            const deleteQuestion = await faq.destroy({
+                where:{
+                    id: qId.id
+                }
+            });
+            if(deleteQuestion){
+                await faqAns.destroy({
+                    where:{
+                        question_id: qId.id
+                    }
+                })
+            }
+            return {
+                msg: "Deleted Successfully!"
+            }
+        } catch (error) {
+            console.log(error);
+            throw error;
+        }
+    },
+
+    viewData: async(faqId) =>{
+        try {
+            const fetchData = await faq.findAll({
+                where:{
+                    id:faqId
+                },
+                include:[{
+                    model: faqAns,
+                }]
+            });
+        return fetchData;   
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    viewAnswer: async(id) => {
+        try {
+            const fetchData = await faqAns.findAll({
+                where:{
+                    id:id
+                }
+            });
+        return fetchData;
+        } catch (error) {
             throw error;
         }
     }
