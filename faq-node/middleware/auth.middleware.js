@@ -35,7 +35,7 @@ module.exports = {
                 else{
                     req.username = verifiedJwt.username;
                     // console.log("verifiedJwt...............",library.decrypt(verifiedJwt));
-                    console.log("verifiedJwt.....................",verifiedJwt);
+                    //console.log("verifiedJwt.....................",verifiedJwt);
                     next();
                 }
             })
@@ -49,13 +49,11 @@ module.exports = {
     },
 
     loginVerify : async(req,res,next) => {
-        console.log("userId............",req.id);
-        // console.log("login........",req.username);
         if(req.username){
             const isLogin = await login.findOne({
                 where: {
                     username: req.username,
-                    is_login: 0
+                    is_login: 1
                 }
             });
             if(!isLogin){
@@ -65,7 +63,7 @@ module.exports = {
                 });
             }
             else{
-                console.log("userId...........",isLogin.id);
+                //console.log("userId...........",isLogin.id);
                 req.id = isLogin.id;
                 next();
             }

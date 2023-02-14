@@ -10,7 +10,7 @@
 <!-- </form>
 <form [formGroup]="answerForm"> -->
     <div formArrayName="faqAnswer">
-        <ng-container *ngFor="let data of faqAnswer.controls; let i= index">
+        <ng-container *ngFor="let data of faqAnswer.controls; let i = index">
             <div [formGroupName]="i">
                 <div>
                     <label>Answer</label>

@@ -15,7 +15,7 @@ module.exports ={
             //console.log(req.body);
             let logData = {
                 username: req.body.username,
-                password: req.body.password
+                password: req.body.password,
             };
             let loginData = await faqService.signIn(logData,token);
             res.json({
@@ -31,12 +31,16 @@ module.exports ={
 
     logOut: async(req,res) => {
         try {
-            let signOut = await faqService.logOut(req.id);
+            let value = {
+                is_login: 0,
+            }; 
+            let signOut = await faqService.logOut(req.id,value);
             res.json({
                 status: 200,
                 message: "Logout Sucessfully!"
             });    
         } catch (error) {
+            console.log(error);
             res.send(error);
         }
     },

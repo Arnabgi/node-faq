@@ -8,10 +8,15 @@ module.exports = {
     signIn: async(loginData,token) => {
         try {
             const logData = await faqModel.findOne({
-                attributes:['username','password'],
+                attributes:['username','password','id'],
                 where:{
                     username : loginData.username,
-                    password : loginData.password
+                    password : loginData.password,
+                }
+            });
+            await faqModel.update({is_login: 1},{
+                where : {
+                    id : logData.id
                 }
             });
             //console.log("logdata.....",logData);
@@ -227,19 +232,25 @@ module.exports = {
         }
     },
 
-    logOut: async(id) =>{
+    logOut: async(id,value) =>{
         try {
-            const isLogout = await login.findOne({
+            console.log("value.........",value);
+            const isLogout = await faqModel.findOne({
                 where: {
                     id: id,
-                    is_login: 0
+                    is_login: 1
                 } 
             });
             if(isLogout){
-                
-            }
-        } catch (error) {
-            throw error;
+                await faqModel.update(value,{
+                    where : {
+                        id : id
+                    }
+            });
+        }
+    }catch (error) {
+        console.log(error);
+        throw error;
         }
     }
 }

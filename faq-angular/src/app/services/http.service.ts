@@ -37,4 +37,8 @@ export class HttpService {
   editAnswer(id:any,data:any) : Observable<any> {
     return this.http.put('http://localhost:5001/faq-route/edit-answer/'+id,data);
   }
+
+  logOut() : Observable<any> {
+    return this.http.get('http://localhost:5001/faq-route/signOut');
+  }
 }

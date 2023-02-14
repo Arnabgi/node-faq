@@ -86,23 +86,23 @@ export class FaqAddQuestionComponent implements OnInit {
       }
     })
   }
-  saveAnswer(questionId:any){
-    const saveData = this.questionForm.value;
-    const id = questionId;
-     const data =this.questionForm.setControl('faqAnswer',this.setArrayValue(saveData,id));
-  }
-  setArrayValue(jsonData:any,questionId:any) : FormArray{
-    const answerValue : FormArray = new FormArray<any>([]);
-    if(jsonData.length){
-      jsonData.forEach((element:any) => {
-        answerValue.push(
-            this.fb.group({
-              questionId: questionId,
-              answers : element.answer,
-            })
-          )       
-      });
-    }
-    return answerValue;
-  }
+  // saveAnswer(questionId:any){
+  //   const saveData = this.questionForm.value;
+  //   const id = questionId;
+  //    const data =this.questionForm.setControl('faqAnswer',this.setArrayValue(saveData,id));
+  // }
+  // setArrayValue(jsonData:any,questionId:any) : FormArray{
+  //   const answerValue : FormArray = new FormArray<any>([]);
+  //   if(jsonData.length){
+  //     jsonData.forEach((element:any) => {
+  //       answerValue.push(
+  //           this.fb.group({
+  //             questionId: questionId,
+  //             answers : element.answer,
+  //           })
+  //         )       
+  //     });
+  //   }
+  //   return answerValue;
+  // }
 }
