@@ -30,18 +30,15 @@ module.exports ={
     },
 
     logOut: async(req,res) => {
-        console.log("id........",req.id);
-        // try {
-        //     let signOut = await faqService.logOut(req.id);
-        //     res.json({
-        //         status: 200,
-        //         message: "Logout Sucessfully!"
-        //     })    
-        // } catch (error) {
-        //     res.send(error);
-        // }
-        
-
+        try {
+            let signOut = await faqService.logOut(req.id);
+            res.json({
+                status: 200,
+                message: "Logout Sucessfully!"
+            });    
+        } catch (error) {
+            res.send(error);
+        }
     },
 
     sendFaq: async(req,res) => {
