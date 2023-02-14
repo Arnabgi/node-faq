@@ -225,5 +225,18 @@ module.exports = {
         } catch (error) {
             throw error;
         }
+    },
+
+    logOut: async(username) =>{
+        // try {
+        //     const logOut = await login.findOne({
+        //         where: {
+        //             username: req.username,
+        //             is_login: 1
+        //         } 
+        //     })
+        // } catch (error) {
+        //     throw error;
+        // }
     }
 }
